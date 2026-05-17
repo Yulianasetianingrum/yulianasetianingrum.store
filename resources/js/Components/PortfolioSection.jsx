@@ -15,26 +15,32 @@ const projects = [
         desc: "A complete custom e-commerce and furniture platform for Apix Interior, featuring product catalogs and seamless purchasing flow.",
         tags: ["E-Commerce", "Furniture", "Web App"],
         color: "bg-blue-50 border-blue-200",
-        link: "https://apixinterior.co.id/"
+        link: "https://apixinterior.co.id/",
+        github: ""
     },
     {
         title: "Dynamic CV Generator",
         desc: "An interactive web application to easily generate, preview, and download professional CVs directly from the browser.",
         tags: ["React", "HTML/CSS", "GitHub Pages"],
         color: "bg-emerald-50 border-emerald-200",
-        link: "https://yulianasetianingrum.github.io/cv-preview/"
+        link: "https://yulianasetianingrum.github.io/cv-preview/",
+        github: "https://github.com/Yulianasetianingrum/cv-preview"
     },
     {
-        title: "Inventory Dashboard",
-        desc: "Multi-warehouse inventory tracking with low-stock alerts and automated supplier ordering.",
-        tags: ["Vue", "Laravel", "MySQL"],
-        color: "bg-purple-50 border-purple-200"
+        title: "SimpleOrder API",
+        desc: "Production-ready Go RESTful API utilizing Clean Architecture, GORM transactions for atomic stock management, JWT authentication, and automated PDF invoice generation.",
+        tags: ["Golang", "Fiber", "PostgreSQL", "Clean Architecture"],
+        color: "bg-purple-50 border-purple-200",
+        link: "https://yulianasetianingrum.store/simpleorder/api/swagger/index.html",
+        github: "https://github.com/Yulianasetianingrum/simpleorder-api"
     },
     {
-        title: "AI Customer Service Bot",
-        desc: "WhatsApp integrated AI chatbot using OpenAI for automated 24/7 customer support.",
-        tags: ["Node.js", "OpenAI", "WhatsApp API"],
-        color: "bg-brand-green/10 border-brand-green/30"
+        title: "Inventory OS - Apix Interior",
+        desc: "A Multi-portal inventory tracking system with worker mobile portal, admin dashboard, FIFO stock reduction, double-stock tracking (new vs used), and photo upload validation.",
+        tags: ["Next.js", "Prisma", "MySQL", "Tailwind CSS"],
+        color: "bg-brand-green/10 border-brand-green/30",
+        link: "https://yulianasetianingrum.store/inventorymanagement",
+        github: "https://github.com/Yulianasetianingrum/inventorymanagement"
     }
 ];
 
@@ -82,9 +88,15 @@ export default function PortfolioSection({ t }) {
                                             <ExternalLink size={16} /> {t.portfolio.btn_demo}
                                         </button>
                                     )}
-                                    <button className="flex items-center gap-2 text-sm font-medium text-brand-text-muted hover:text-brand-text transition-colors">
-                                        <GithubIcon /> {t.portfolio.btn_code}
-                                    </button>
+                                    {project.github ? (
+                                        <a href={project.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-medium text-brand-text-muted hover:text-brand-text transition-colors">
+                                            <GithubIcon /> {t.portfolio.btn_code}
+                                        </a>
+                                    ) : (
+                                        <button className="flex items-center gap-2 text-sm font-medium text-brand-text-muted hover:text-brand-text transition-colors">
+                                            <GithubIcon /> {t.portfolio.btn_code}
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </motion.div>
