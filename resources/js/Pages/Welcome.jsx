@@ -12,10 +12,9 @@ import FloatingWhatsApp from '@/Components/FloatingWhatsApp';
 import Footer from '@/Components/Footer';
 
 import en from '@/locales/en';
-import id from '@/locales/id';
 
-export default function Welcome({ locale }) {
-    const t = locale === 'id' ? id : en;
+export default function Welcome() {
+    const t = en;
 
     return (
         <PortfolioLayout title="Yuliana Setianingrum - IT & Software Developer" t={t}>

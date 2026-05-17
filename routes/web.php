@@ -5,30 +5,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function (\Illuminate\Http\Request $request) {
-    // Determine Locale based on IP
-    $locale = session('locale');
-    
-    if (!$locale) {
-        $ip = $request->ip();
-        // Fallback for local testing
-        if ($ip === '127.0.0.1' || $ip === '::1') {
-            $ip = '103.111.0.0'; // Dummy Indonesian IP
-        }
-        
-        try {
-            $response = \Illuminate\Support\Facades\Http::timeout(3)->get("http://ip-api.com/json/{$ip}");
-            $countryCode = $response->json('countryCode');
-            $locale = ($countryCode === 'ID') ? 'id' : 'en';
-        } catch (\Exception $e) {
-            $locale = 'en'; // Default to English on failure
-        }
-        
-        session(['locale' => $locale]);
-    }
-
+Route::get('/', function () {
     return Inertia::render('Welcome', [
-        'locale' => $locale,
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
