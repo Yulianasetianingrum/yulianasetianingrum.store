@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MessageCircle, MapPin } from 'lucide-react';
 
@@ -18,6 +18,25 @@ const LinkedinIcon = () => (
 );
 
 export default function ContactSection({ t }) {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [details, setDetails] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // Construct the WhatsApp message with user input
+        const waMessage = `Halo Yuliana, saya ingin mendiskusikan projek baru!
+
+*Nama:* ${name || '-'}
+*Email:* ${email || '-'}
+*Detail Projek:*
+${details || '-'}`;
+
+        const waUrl = `https://wa.me/6285175020319?text=${encodeURIComponent(waMessage)}`;
+        window.open(waUrl, '_blank');
+    };
+
     return (
         <section id="contact" className="py-24 relative z-10 bg-brand-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -69,29 +88,48 @@ export default function ContactSection({ t }) {
                         className="glass-panel rounded-3xl p-8 bg-white border border-gray-200 shadow-lg"
                     >
                         <h3 className="text-2xl font-bold text-brand-text mb-6">{t.contact.form_title}</h3>
-                        <form className="space-y-4">
+                        <form onSubmit={handleSubmit} className="space-y-4">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <label className="text-sm text-gray-600 font-medium">{t.contact.name}</label>
-                                    <input type="text" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-brand-text focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green transition-all" placeholder="John Doe" />
+                                    <input 
+                                        type="text" 
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-brand-text focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green transition-all" 
+                                        placeholder="John Doe" 
+                                        required
+                                    />
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-sm text-gray-600 font-medium">{t.contact.email}</label>
-                                    <input type="email" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-brand-text focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green transition-all" placeholder="john@example.com" />
+                                    <input 
+                                        type="email" 
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-brand-text focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green transition-all" 
+                                        placeholder="john@example.com" 
+                                        required
+                                    />
                                 </div>
                             </div>
                             <div className="space-y-2">
                                 <label className="text-sm text-gray-600 font-medium">{t.contact.details}</label>
-                                <textarea rows="4" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-brand-text focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green transition-all resize-none" placeholder="Tell me about your project..."></textarea>
+                                <textarea 
+                                    rows="4" 
+                                    value={details}
+                                    onChange={(e) => setDetails(e.target.value)}
+                                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-brand-text focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green transition-all resize-none" 
+                                    placeholder="Tell me about your project..."
+                                    required
+                                ></textarea>
                             </div>
-                            <a 
-                                href={`https://wa.me/6285175020319?text=${encodeURIComponent(t.hero.wa_text)}`}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-brand-green text-white font-bold hover:bg-brand-green-dark transition-all shadow-md hover:shadow-lg mt-4"
+                            <button 
+                                type="submit"
+                                className="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-brand-green text-white font-bold hover:bg-brand-green-dark transition-all shadow-md hover:shadow-lg mt-4 cursor-pointer"
                             >
                                 <MessageCircle size={18} /> {t.contact.btn}
-                            </a>
+                            </button>
                         </form>
                     </motion.div>
                     
