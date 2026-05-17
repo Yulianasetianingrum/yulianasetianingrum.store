@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-green: #14a800;
+  --color-brand-green-light: #3cce27;
+  --color-brand-green-dark: #008a00;
+  --color-brand-white: #ffffff;
+  --color-brand-gray-light: #f9f9f9;
+  --color-brand-text: #222222;
+  --color-brand-text-muted: #5e6d55;
+  --color-glass: rgba(255, 255, 255, 0.9);
+  --color-glass-border: rgba(0, 0, 0, 0.08);
+}
+
+@layer base {
+  body {
+    @apply bg-brand-white text-brand-text antialiased font-sans;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-green-dark to-brand-green-light;
+  }
+}
+
+/* Animations */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
