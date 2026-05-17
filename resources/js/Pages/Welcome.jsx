@@ -5,6 +5,7 @@ import HeroSection from '@/Components/HeroSection';
 import ServicesSection from '@/Components/ServicesSection';
 import PortfolioSection from '@/Components/PortfolioSection';
 import LinkedInProfile from '@/Components/LinkedInProfile';
+import CodingProfiles from '@/Components/CodingProfiles';
 import PricingSection from '@/Components/PricingSection';
 import ContactSection from '@/Components/ContactSection';
 import FAQSection from '@/Components/FAQSection';
@@ -22,6 +23,7 @@ export default function Welcome() {
             <ServicesSection t={t} />
             <PortfolioSection t={t} />
             <LinkedInProfile t={t} />
+            <CodingProfiles t={t} />
             <PricingSection t={t} />
             <FAQSection t={t} />
             <ContactSection t={t} />
